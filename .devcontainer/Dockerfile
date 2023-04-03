@@ -5,11 +5,11 @@ COPY pom.xml /app
 COPY src /app/src
 RUN mvn -B package --file pom.xml -DskipTests
 
-#Fetch the Java sdk image
+# Fetch the Java sdk image
 FROM eclipse-temurin:17-jdk-alpine
-#Expose port 8080
+# Expose port 8080
 EXPOSE 8080
-COPY --from=build /app/target/*jar devops-demo-1.0.jar
+COPY --from=build /app/target/*.jar devops-demo-1.0.jar
 ENTRYPOINT ["java", "-jar", "devops-demo-1.0.jar"]
 
 # Java version: 17
